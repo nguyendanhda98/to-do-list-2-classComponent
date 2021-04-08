@@ -5,12 +5,14 @@ import WorkList from "./components/workList";
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.todolist = JSON.parse(localStorage.getItem("todolist"));
     this.state = {
-      works: [],
+      works: this.todolist || [],
     };
   }
 
   setWorks(arr) {
+    localStorage.setItem("todolist", JSON.stringify(arr));
     this.setState({
       works: arr,
     });

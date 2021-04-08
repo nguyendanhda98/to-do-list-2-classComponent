@@ -22,7 +22,30 @@ class WorkList extends React.Component {
     list[index] = {
       id: id,
       name: name,
+      status: true,
     };
+    this.props.setWorks(list);
+  }
+  Done(id) {
+    let index = this.props.works.findIndex((x) => {
+      return x.id === id;
+    });
+
+    let list = this.props.works;
+    if (list[index].status === false) {
+      list[index] = {
+        id: id,
+        name: list[index].name,
+        status: true,
+      };
+    } else {
+      list[index] = {
+        id: id,
+        name: list[index].name,
+        status: false,
+      };
+    }
+
     this.props.setWorks(list);
   }
 
@@ -37,6 +60,7 @@ class WorkList extends React.Component {
                 work={work}
                 Delete={() => this.Delete(work.id)}
                 Edit={(name) => this.Edit(name, work.id)}
+                Done={() => this.Done(work.id)}
               />
             );
           })}

@@ -16,7 +16,9 @@ class Add extends React.Component {
   addItem(event) {
     event.preventDefault();
     if (this.state.work.name.trim() !== "") {
-      this.props.setWorks([...this.props.works, this.state.work]);
+      let arr = [...this.props.works, this.state.work];
+      this.props.setWorks(arr);
+      localStorage.setItem("todolist", JSON.stringify(arr));
       this.setState({
         work: { id: "", name: "" },
       });
@@ -34,6 +36,7 @@ class Add extends React.Component {
       work: {
         id: this.s4(),
         name: value,
+        status: false,
       },
     });
   }

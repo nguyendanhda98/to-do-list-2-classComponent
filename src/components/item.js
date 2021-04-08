@@ -17,30 +17,12 @@ class Item extends React.Component {
     };
   }
 
-  Done() {
-    if (this.state.status === "") {
-      this.setState({
-        status: " line-through ",
-      });
-      this.setState({
-        text: "Undone",
-      });
-    } else {
-      this.setState({
-        status: "",
-      });
-      this.setState({
-        text: "Done",
-      });
-    }
-  }
-
   EditText() {
     if (this.state.edit.text === "Edit") {
       this.setState({
         edit: { text: "Save" },
         class: {
-          li: "hidden",
+          li: " hidden ",
           input: "",
         },
       });
@@ -49,7 +31,7 @@ class Item extends React.Component {
         edit: { text: "Edit" },
         class: {
           li: "",
-          input: "hidden",
+          input: " hidden ",
         },
       });
       if (this.state.work !== "") {
@@ -70,7 +52,12 @@ class Item extends React.Component {
     return (
       <div className={"flex justify-between"}>
         <div className={"flex"}>
-          <li className={this.state.status + this.state.class.li}>
+          <li
+            className={
+              `${this.props.work.status ? "line-through" : ""}` +
+              this.state.class.li
+            }
+          >
             {this.props.work.name}
           </li>
           <input
@@ -87,7 +74,7 @@ class Item extends React.Component {
           <button
             type={"button"}
             className={"border-2"}
-            onClick={() => this.Done()}
+            onClick={() => this.props.Done()}
           >
             {this.state.text}
           </button>
