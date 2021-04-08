@@ -25,10 +25,12 @@ class App extends React.Component {
             works={this.state.works}
             setWorks={(arr) => this.setWorks(arr)}
           />
-          <WorkList
-            works={this.state.works}
-            setWorks={(arr) => this.setWorks(arr)}
-          />
+          <div className={" overflow-auto w-full h-80"}>
+            <WorkList
+              works={this.state.works}
+              setWorks={(arr) => this.setWorks(arr)}
+            />
+          </div>
         </div>
       </div>
     );

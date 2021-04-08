@@ -52,7 +52,9 @@ class Item extends React.Component {
           input: "hidden",
         },
       });
-      this.props.Edit(this.state.work);
+      if (this.state.work !== "") {
+        this.props.Edit(this.state.work);
+      }
     }
   }
 
