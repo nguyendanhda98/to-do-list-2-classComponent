@@ -6,6 +6,7 @@ class Item extends React.Component {
     this.state = {
       status: "",
       text: "Done",
+      selectedId: null,
       edit: {
         text: "Edit",
       },
@@ -87,13 +88,13 @@ class Item extends React.Component {
           </button>
 
           {/*Edit*/}
-          <button
-            type={"button"}
-            className={"border-2"}
-            onClick={() => this.EditText()}
-          >
-            {this.state.edit.text}
-          </button>
+          {/*<button*/}
+          {/*  type={"button"}*/}
+          {/*  className={"border-2"}*/}
+          {/*  onClick={() => this.EditText()}*/}
+          {/*>*/}
+          {/*  {this.state.edit.text}*/}
+          {/*</button>*/}
 
           <button
             type={"button"}

@@ -6,6 +6,7 @@ class WorkList extends React.Component {
     super(props);
     this.state = {
       works: this.props.works,
+      selectedId: null,
     };
   }
   Delete(id) {
@@ -27,26 +28,34 @@ class WorkList extends React.Component {
     this.props.setWorks(list);
   }
   Done(id) {
-    let index = this.props.works.findIndex((x) => {
-      return x.id === id;
-    });
-
-    let list = this.props.works;
-    if (list[index].status === false) {
-      list[index] = {
-        id: id,
-        name: list[index].name,
-        status: true,
-      };
+    if (id !== this.state.selectedId) {
+      this.setState({
+        selectedId: id,
+      });
     } else {
-      list[index] = {
-        id: id,
-        name: list[index].name,
-        status: false,
-      };
-    }
+      let index = this.props.works.findIndex((x) => {
+        return x.id === id;
+      });
 
-    this.props.setWorks(list);
+      let list = this.props.works;
+      if (list[index].status === false) {
+        list[index] = {
+          id: id,
+          name: list[index].name,
+          status: true,
+        };
+      } else {
+        list[index] = {
+          id: id,
+          name: list[index].name,
+          status: false,
+        };
+      }
+      this.props.setWorks(list);
+      this.setState({
+        selectedId: null,
+      });
+    }
   }
 
   render() {
