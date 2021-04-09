@@ -13,11 +13,17 @@ class Item extends React.Component {
         li: "",
         input: "hidden",
       },
-      work: "",
+      work: this.props.work.name,
     };
   }
 
   EditText() {
+    let id = this.props.work.id;
+    let arr = JSON.parse(localStorage.getItem("todolist"));
+    let index = arr.findIndex((x) => x.id === id);
+    this.setState({
+      work: arr[index].name,
+    });
     if (this.state.edit.text === "Edit") {
       this.setState({
         edit: { text: "Save" },
@@ -25,6 +31,7 @@ class Item extends React.Component {
           li: " hidden ",
           input: "",
         },
+        // work: this.props.work.name,
       });
     } else {
       this.setState({
@@ -34,7 +41,7 @@ class Item extends React.Component {
           input: " hidden ",
         },
       });
-      if (this.state.work !== "") {
+      if (this.state.work.trim() !== "") {
         this.props.Edit(this.state.work);
       }
     }
@@ -64,7 +71,7 @@ class Item extends React.Component {
             className={this.state.class.input}
             type={"text"}
             name={"work"}
-            defaultValue={this.props.work.name}
+            defaultValue={this.state.work}
             onChange={(event) => this.onChangeInput(event)}
             required={true}
           />
@@ -78,6 +85,8 @@ class Item extends React.Component {
           >
             {this.state.text}
           </button>
+
+          {/*Edit*/}
           <button
             type={"button"}
             className={"border-2"}
@@ -85,6 +94,7 @@ class Item extends React.Component {
           >
             {this.state.edit.text}
           </button>
+
           <button
             type={"button"}
             className={"border-2"}

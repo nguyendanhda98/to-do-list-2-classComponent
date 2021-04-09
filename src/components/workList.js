@@ -22,7 +22,7 @@ class WorkList extends React.Component {
     list[index] = {
       id: id,
       name: name,
-      status: true,
+      status: list[index].status,
     };
     this.props.setWorks(list);
   }
