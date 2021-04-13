@@ -20,9 +20,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="  flex justify-center items-center w-screen h-screen">
-        <div className={"  w-96 h-96 bg-blue-200 text-center"}>
-          <div className="border">Todo List</div>
+      <div className=" font-sans flex justify-center items-center w-screen h-screen bg-gradient-to-r from-gray-800 via-gray-500 to-gray-800 ">
+        <div
+          className={
+            "   w-1/2 h-96 bg-yellow-300 text-center shadow-2xl rounded-3xl p-5"
+          }
+        >
+          <div className="mb-3 font-handWriting text-4xl">Todo List</div>
           <Add
             works={this.state.works}
             setWorks={(arr) => this.setWorks(arr)}

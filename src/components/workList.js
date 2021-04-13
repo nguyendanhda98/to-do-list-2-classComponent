@@ -60,8 +60,8 @@ class WorkList extends React.Component {
 
   render() {
     return (
-      <div>
-        <ul className={""}>
+      <div className={"font-handWriting overflow-hidden"}>
+        <ul className={"overflow-auto h-60 p-2"}>
           {this.props.works.map((work, index) => {
             return (
               <Item

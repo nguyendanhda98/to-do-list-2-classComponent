@@ -18,35 +18,35 @@ class Item extends React.Component {
     };
   }
 
-  EditText() {
-    let id = this.props.work.id;
-    let arr = JSON.parse(localStorage.getItem("todolist"));
-    let index = arr.findIndex((x) => x.id === id);
-    this.setState({
-      work: arr[index].name,
-    });
-    if (this.state.edit.text === "Edit") {
-      this.setState({
-        edit: { text: "Save" },
-        class: {
-          li: " hidden ",
-          input: "",
-        },
-        // work: this.props.work.name,
-      });
-    } else {
-      this.setState({
-        edit: { text: "Edit" },
-        class: {
-          li: "",
-          input: " hidden ",
-        },
-      });
-      if (this.state.work.trim() !== "") {
-        this.props.Edit(this.state.work);
-      }
-    }
-  }
+  // EditText() {
+  //   let id = this.props.work.id;
+  //   let arr = JSON.parse(localStorage.getItem("todolist"));
+  //   let index = arr.findIndex((x) => x.id === id);
+  //   this.setState({
+  //     work: arr[index].name,
+  //   });
+  //   if (this.state.edit.text === "Edit") {
+  //     this.setState({
+  //       edit: { text: "Save" },
+  //       class: {
+  //         li: " hidden ",
+  //         input: "",
+  //       },
+  //       // work: this.props.work.name,
+  //     });
+  //   } else {
+  //     this.setState({
+  //       edit: { text: "Edit" },
+  //       class: {
+  //         li: "",
+  //         input: " hidden ",
+  //       },
+  //     });
+  //     if (this.state.work.trim() !== "") {
+  //       this.props.Edit(this.state.work);
+  //     }
+  //   }
+  // }
 
   onChangeInput(event) {
     const target = event.target;
@@ -58,18 +58,18 @@ class Item extends React.Component {
 
   render() {
     return (
-      <div className={"flex justify-between"}>
+      <div className={"flex justify-between mb-1 font-handWriting"}>
         <div className={"flex"}>
           <li
             className={
-              `${this.props.work.status ? "line-through" : ""}` +
+              `${this.props.work.status ? "text-gray-400" : ""}` +
               this.state.class.li
             }
           >
             {this.props.work.name}
           </li>
           <input
-            className={this.state.class.input}
+            className={`${this.state.class.input} `}
             type={"text"}
             name={"work"}
             defaultValue={this.state.work}
@@ -81,7 +81,9 @@ class Item extends React.Component {
         <div className={"flex"}>
           <button
             type={"button"}
-            className={"border-2"}
+            className={
+              "hover:bg-yellow-400 border-2 ml-1 py-1 px-3 rounded-3xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+            }
             onClick={() => this.props.Done()}
           >
             {this.state.text}
@@ -98,7 +100,9 @@ class Item extends React.Component {
 
           <button
             type={"button"}
-            className={"border-2"}
+            className={
+              " hover:bg-yellow-400 border-2 ml-1 py-1 px-3 rounded-3xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+            }
             onClick={() => this.props.Delete()}
           >
             Delete

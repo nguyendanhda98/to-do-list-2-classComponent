@@ -43,10 +43,12 @@ class Add extends React.Component {
 
   render() {
     return (
-      <div className={""}>
-        <form onSubmit={(event) => this.addItem(event)}>
+      <div className={"font-handWriting"}>
+        <form className={""} onSubmit={(event) => this.addItem(event)}>
           <input
-            className={"border-gray-100"}
+            className={
+              "border-gray-100 rounded-3xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent p-1 pl-2"
+            }
             type={"text"}
             id={"add"}
             name={"work"}
@@ -54,7 +56,12 @@ class Add extends React.Component {
             onChange={(event) => this.handleOnChange(event)}
             required={true}
           />
-          <button className={"border-2"} type="submit">
+          <button
+            className={
+              "border-2 ml-5 mb-5 px-3 py-1 rounded-3xl shadow-2xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent hover:bg-yellow-400"
+            }
+            type="submit"
+          >
             Add
           </button>
         </form>
