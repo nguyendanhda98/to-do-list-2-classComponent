@@ -15,17 +15,18 @@ class Add extends React.Component {
     if (this.state.work.name.trim() !== "") {
       axios
         .post("http://localhost:3030/tasks", work)
-        .then(function (response) {
-          console.log(response);
-        })
+        .then(
+          function () {
+            this.props.getAPI();
+          }.bind(this)
+        )
         .catch(function (error) {
           console.log(error);
         });
-    } else {
-      this.setState({
-        work: {},
-      });
     }
+    this.setState({
+      work: { name: "", status: false },
+    });
   }
 
   handleOnChange(event) {

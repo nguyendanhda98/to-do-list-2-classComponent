@@ -27,6 +27,7 @@ class WorkList extends React.Component {
     };
     this.props.setWorks(list);
   }
+
   Done(id) {
     if (id !== this.state.selectedId) {
       this.setState({

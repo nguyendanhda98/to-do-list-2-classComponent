@@ -11,7 +11,7 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
+  getAPI() {
     axios
       .get("http://localhost:3030/tasks")
       .then(
@@ -22,20 +22,18 @@ class App extends React.Component {
           });
         }.bind(this)
       )
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
+      .catch(
+        function (error) {
+          // handle error
+          this.setState({
+            works: [],
+          });
+        }.bind(this)
+      );
   }
 
-  setWorks(arr) {
-    localStorage.setItem("todolist", JSON.stringify(arr));
-    this.setState({
-      works: arr,
-    });
+  componentDidMount() {
+    this.getAPI();
   }
 
   render() {
@@ -47,15 +45,9 @@ class App extends React.Component {
           }
         >
           <div className="mb-3 font-handWriting text-4xl">Todo List</div>
-          <Add
-            works={this.state.works}
-            setWorks={(arr) => this.setWorks(arr)}
-          />
+          <Add getAPI={() => this.getAPI()} />
           <div className={" overflow-auto w-full h-80"}>
-            <WorkList
-              works={this.state.works}
-              setWorks={(arr) => this.setWorks(arr)}
-            />
+            <WorkList works={this.state.works} />
           </div>
         </div>
       </div>
