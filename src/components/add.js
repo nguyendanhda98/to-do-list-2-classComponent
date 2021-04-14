@@ -1,30 +1,29 @@
 import React from "react";
+import axios from "axios";
 
 class Add extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      work: { id: "", name: "" },
+      work: { name: "", status: false },
     };
-  }
-  s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
   }
 
   addItem(event) {
     event.preventDefault();
+    let work = this.state.work;
     if (this.state.work.name.trim() !== "") {
-      let arr = [...this.props.works, this.state.work];
-      this.props.setWorks(arr);
-      localStorage.setItem("todolist", JSON.stringify(arr));
-      this.setState({
-        work: { id: "", name: "" },
-      });
+      axios
+        .post("http://localhost:3030/tasks", work)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     } else {
       this.setState({
-        work: { id: "", name: "" },
+        work: {},
       });
     }
   }
@@ -34,7 +33,6 @@ class Add extends React.Component {
     const value = target.value;
     this.setState({
       work: {
-        id: this.s4(),
         name: value,
         status: false,
       },

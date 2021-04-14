@@ -1,14 +1,34 @@
 import React from "react";
 import Add from "./components/add";
 import WorkList from "./components/workList";
+import axios from "axios";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.todolist = JSON.parse(localStorage.getItem("todolist"));
     this.state = {
-      works: this.todolist || [],
+      works: [],
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:3030/tasks")
+      .then(
+        function (response) {
+          // handle success
+          this.setState({
+            works: response.data.data,
+          });
+        }.bind(this)
+      )
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
   }
 
   setWorks(arr) {
